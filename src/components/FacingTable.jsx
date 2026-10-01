@@ -394,6 +394,11 @@ export default function FacingTable({
                       <div className="text-sm font-extrabold text-white">
                         {row.compCaras.toLocaleString()} caras
                       </div>
+                      {row.compMarcasDetalle && row.compMarcasDetalle !== 'N/A' && (
+                        <div className="text-[10px] text-sky-400/80 mt-1 line-clamp-2 leading-tight" title={row.compMarcasDetalle}>
+                          {row.compMarcasDetalle}
+                        </div>
+                      )}
                     </td>
 
                     {/* Brecha Caras */}

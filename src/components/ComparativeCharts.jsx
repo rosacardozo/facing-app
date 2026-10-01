@@ -105,7 +105,13 @@ export default function ComparativeCharts({
               <div className="text-[10px] text-sky-400/80">
                 Respaldo: <span className="font-semibold text-white">{item.compMuestras} muestras</span> auditadas
               </div>
-              {item.compMarcas && (
+              {item.compMarcasDetalle && item.compMarcasDetalle !== 'N/A' ? (
+                <div className="text-[10px] text-slate-400 mt-1 space-y-0.5 leading-tight">
+                  {item.compMarcasDetalle.split(' | ').map((line, i) => (
+                    <div key={i}>• {line}</div>
+                  ))}
+                </div>
+              ) : item.compMarcas && (
                 <div className="text-[10px] text-slate-400 truncate mt-0.5">
                   Marcas: {item.compMarcas}
                 </div>

@@ -165,7 +165,8 @@ export function getProductFacingComparison(filteredTunal, filteredComp) {
         marcas: new Set(),
         carasTotales: 0,
         muestras: 0,
-        sucursales: new Set()
+        sucursales: new Set(),
+        detalleMarcas: {}
       };
     }
     compGroups[key].productos.add(r.producto);
@@ -173,6 +174,13 @@ export function getProductFacingComparison(filteredTunal, filteredComp) {
     compGroups[key].carasTotales += (r.caras || 0);
     compGroups[key].muestras += 1;
     if (r.sucCliente) compGroups[key].sucursales.add(r.sucCliente);
+    
+    const marcaKey = r.marca || 'Otra Competencia';
+    if (!compGroups[key].detalleMarcas[marcaKey]) {
+      compGroups[key].detalleMarcas[marcaKey] = { caras: 0, muestras: 0 };
+    }
+    compGroups[key].detalleMarcas[marcaKey].caras += (r.caras || 0);
+    compGroups[key].detalleMarcas[marcaKey].muestras += 1;
   });
 
   const allKeys = new Set([...Object.keys(tunalGroups), ...Object.keys(compGroups)]);
@@ -189,6 +197,11 @@ export function getProductFacingComparison(filteredTunal, filteredComp) {
     const tCaras = t ? (t.muestras > 0 ? parseFloat((t.carasTotales / t.muestras).toFixed(1)) : 0) : 0;
     const cCaras = c ? (c.muestras > 0 ? parseFloat((c.carasTotales / c.muestras).toFixed(1)) : 0) : 0;
 
+    const detalleMarcasComp = c ? Object.entries(c.detalleMarcas).map(([marca, stats]) => {
+      const prom = stats.muestras > 0 ? (stats.caras / stats.muestras).toFixed(1) : 0;
+      return `${marca}: ${prom} caras (${stats.muestras} reg)`;
+    }).join(' | ') : 'N/A';
+
     const tMuestras = t ? t.muestras : 0;
     const cMuestras = c ? c.muestras : 0;
 
@@ -196,7 +209,7 @@ export function getProductFacingComparison(filteredTunal, filteredComp) {
     let status = 'Sin Par Competitivo';
 
     if (t && c) {
-      diffCaras = tCaras - cCaras;
+      diffCaras = parseFloat((tCaras - cCaras).toFixed(1));
       if (diffCaras > 0) {
         status = 'Mayor Facing Tunal';
       } else if (diffCaras < 0) {
@@ -216,6 +229,7 @@ export function getProductFacingComparison(filteredTunal, filteredComp) {
       tunalCaras: tCaras,
       compProductos: c ? Array.from(c.productos).join(', ') : 'Sin registro Competencia',
       compMarcas: c ? Array.from(c.marcas).join(', ') : 'N/A',
+      compMarcasDetalle: detalleMarcasComp,
       compMuestras: cMuestras,
       compCaras: cCaras,
       diffCaras,
