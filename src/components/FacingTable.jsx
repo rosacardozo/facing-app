@@ -317,7 +317,7 @@ export default function FacingTable({
                   Muestras Comp <SortIcon field="compMuestras" />
                 </th>
                 <th className="py-3 px-3 text-sky-400 font-bold cursor-pointer hover:text-sky-300" onClick={() => handleSort('compCaras')}>
-                  NroCaras Comp <SortIcon field="compCaras" />
+                  Prom. Caras Comp <SortIcon field="compCaras" />
                 </th>
                 <th className="py-3 px-3 cursor-pointer hover:text-white" onClick={() => handleSort('diffCaras')}>
                   Brecha Caras <SortIcon field="diffCaras" />

@@ -99,7 +99,7 @@ export default function ComparativeCharts({
 
             <div className="bg-sky-950/40 border border-sky-500/30 rounded-lg p-2">
               <div className="flex justify-between items-center text-sky-300 font-bold mb-0.5">
-                <span>Caras Competencia:</span>
+                <span>Prom. Caras Competencia:</span>
                 <span>{item.compCaras} caras</span>
               </div>
               <div className="text-[10px] text-sky-400/80">
