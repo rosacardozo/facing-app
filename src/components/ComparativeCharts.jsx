@@ -89,7 +89,7 @@ export default function ComparativeCharts({
           <div className="space-y-2">
             <div className="bg-emerald-950/40 border border-emerald-500/30 rounded-lg p-2">
               <div className="flex justify-between items-center text-emerald-300 font-bold mb-0.5">
-                <span>Caras Tunal:</span>
+                <span>Prom. Caras Tunal:</span>
                 <span>{item.tunalCaras} caras</span>
               </div>
               <div className="text-[10px] text-emerald-400/80">

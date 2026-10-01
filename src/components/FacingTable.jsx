@@ -308,7 +308,7 @@ export default function FacingTable({
                   Muestras Tunal <SortIcon field="tunalMuestras" />
                 </th>
                 <th className="py-3 px-3 text-emerald-400 font-bold cursor-pointer hover:text-emerald-300" onClick={() => handleSort('tunalCaras')}>
-                  NumCaras Tunal <SortIcon field="tunalCaras" />
+                  Prom. Caras Tunal <SortIcon field="tunalCaras" />
                 </th>
                 <th className="py-3 px-3 cursor-pointer hover:text-white" onClick={() => handleSort('compMarcas')}>
                   Competencia (Marcas) <SortIcon field="compMarcas" />

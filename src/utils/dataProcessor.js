@@ -186,7 +186,7 @@ export function getProductFacingComparison(filteredTunal, filteredComp) {
     const sub = t ? t.subcategoria : c.subcategoria;
     const pres = t ? t.presentacion : c.presentacion;
 
-    const tCaras = t ? t.carasTotales : 0;
+    const tCaras = t ? (t.muestras > 0 ? parseFloat((t.carasTotales / t.muestras).toFixed(1)) : 0) : 0;
     const cCaras = c ? (c.muestras > 0 ? parseFloat((c.carasTotales / c.muestras).toFixed(1)) : 0) : 0;
 
     const tMuestras = t ? t.muestras : 0;
